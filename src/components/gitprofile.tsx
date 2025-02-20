@@ -30,6 +30,7 @@ import ExternalProjectCard from './external-project-card';
 import BlogCard from './blog-card';
 import Footer from './footer';
 import PublicationCard from './publication-card';
+// import Chat from './chat-agent-card';
 
 /**
  * Renders the GitProfile component.
@@ -46,6 +47,7 @@ const GitProfile = ({ config }: { config: Config }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [githubProjects, setGithubProjects] = useState<GithubProject[]>([]);
+  // const [chatEnabled, setChatEnabled] = useState<boolean>(false);
 
   const getGithubProjects = useCallback(
     async (publicRepoCount: number): Promise<GithubProject[]> => {
@@ -218,6 +220,21 @@ const GitProfile = ({ config }: { config: Config }) => {
                       github={sanitizedConfig.github}
                       social={sanitizedConfig.social}
                     />
+                    {/* <div className="flex items-center space-x-2">
+                      <label
+                        htmlFor="chat-toggle"
+                        className="text-lg font-medium"
+                      >
+                        Enable Chat with Profile :
+                      </label>
+                      <input
+                        type="checkbox"
+                        id="chat-toggle"
+                        className="toggle toggle-primary"
+                        checked={chatEnabled}
+                        onChange={() => setChatEnabled(!chatEnabled)}
+                      />
+                    </div> */}
                     {sanitizedConfig.skills.length !== 0 && (
                       <SkillCard
                         loading={loading}
@@ -246,6 +263,7 @@ const GitProfile = ({ config }: { config: Config }) => {
                 </div>
                 <div className="lg:col-span-2 col-span-1">
                   <div className="grid grid-cols-1 gap-6">
+                    {/* {chatEnabled && <Chat />} */}
                     {sanitizedConfig.projects.github.display && (
                       <GithubProjectCard
                         header={sanitizedConfig.projects.github.header}
